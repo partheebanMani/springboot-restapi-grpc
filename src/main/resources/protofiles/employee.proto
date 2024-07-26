@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.partheeban.grpc";
+option java_outer_classname = "EmployeeProto";
+
+package employee;
+
+message GrpcEmployee{
+  optional int64 id=1;
+  string name=2;
+  string department=3;
+  double salary=4;
+}
+
+
+service EmployeeService{
+  rpc getEmployees(EmployeeRequest) returns (EmployeesResponse);
+  rpc getEmployeeById(GetEmployeeByIdRequest) returns (EmployeeResponse);
+  rpc createEmployee(CreateEmployeeRequest) returns (EmployeeResponse);
+  rpc deleteEmployee(GetEmployeeByIdRequest) returns (DeleteEmployeeResponse);
+}
+
+message EmployeeRequest{
+}
+
+message GetEmployeeByIdRequest{
+  int64 id=1;
+}
+
+message EmployeesResponse{
+  repeated GrpcEmployee employee=1;
+}
+
+message EmployeeResponse{
+  GrpcEmployee employee=1;
+}
+
+message CreateEmployeeRequest{
+  GrpcEmployee grpcEmployee=1;
+}
+
+message DeleteEmployeeResponse{
+  string response =1;
+}
