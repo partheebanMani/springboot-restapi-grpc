@@ -1,35 +1,84 @@
-spring boot application maintains employees records in spring boot in built memory and exposes CURD operation using REST API and GRPC endpoints.
 
-**PREREQUISITES:**
+# Employee Records Management System
 
-‣ JAVA 17
+This Spring Boot application manages employee records using an in-memory H2 database and exposes endpoints for CRUD operations through both REST API and gRPC.
 
-‣ MAVEN 3
+## Prerequisites
 
-‣ SPRING BOOT 3
+* Java 17
 
-‣ DOCKER
+* Maven 3
 
-This spring boot application maintain employees records in H2 DB and exposes endpoints like get all employees , get Employee , create and delete in both REST API and GRPC format. 
+* Spring Boot 3
 
-PROTO FILE: [employee.proto](src/main/resources/protofiles/employee.proto)
+* Docker
 
-REST API: [EmployeeController](src/main/java/com/partheeban/component/controller/EmployeeController.java)
+## Features
 
-REST API uses port 8081 and GRPC uses port 9090. These ports can be modified in the corresponding properties in properties file. 
+* Maintains employee records in H2 database.
+* Exposes endpoints for creating, reading, updating, and deleting employee records.
+* Provides endpoints in both REST API and gRPC formats.
 
-SWAGGER LINK: http://localhost:8081/swagger-ui/index.html#/
+## Endpoints
 
-Use maven clean install command to generate Mapper, grpc classes and jar file.  
+### REST API
+
+* Get all employees
+* Get a specific employee
+* Create a new employee
+* Delete an employee
+
+### gRPC
+Defined in the proto file: employee.proto
+
+## Configuration
+
+* REST API: Runs on port 8081 (configurable in the properties file)
+* gRPC: Runs on port 9090 (configurable in the properties file)
+
+## Swagger Documentation
+
+Access the Swagger UI for API documentation at: Swagger UI
+
+## Build and Run
+
+#### Maven
+Use the following Maven command to clean, install, and generate the necessary classes and jar file:
 
     mvn clean install
-
-DOCKER COMMANDS:
-
-To build docker image:
+#### Docker
+##### Build Docker Image
 
     docker build -t my-spring-boot-app .
 
-To start docker container:
+##### Start Docker Container
 
-    docker run -p -d 8081:8081 -p 9090:9090 my-spring-boot-app
+    docker run -p 8081:8081 -p 9090:9090 -d my-spring-boot-app
+
+## Getting Started
+
+1. Clone the repository:
+
+        git clone https://github.com/partheebanMani/springboot-restapi-grpc
+
+
+2. Navigate to the project directory:
+
+        cd springboot-restapi-grpc
+
+
+3. Build the project using Maven:
+
+        mvn clean install
+
+
+4. Build and run the Docker container:
+
+       docker build -t my-spring-boot-app .
+       docker run -p 8081:8081 -p 9090:9090 -d my-spring-boot-app
+
+5. Access the REST API documentation via Swagger UI at http://localhost:8081/swagger-ui/index.html#/.
+
+## Contributing
+
+Contributions are welcome! Please submit a pull request or open an issue for any changes or enhancements.
